@@ -5,7 +5,6 @@ orbs:
   node: circleci/node@5
 jobs:
   test-node:
-    # Install node dependencies and run tests
     executor: node/default
     working_directory: ~/project/Digitial-Twin-Frontend
     steps:
@@ -14,8 +13,8 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          name: Run tests
-          command: npm test --passWithNoTests
+          name: Run tests with verbose output
+          command: npm test --passWithNoTests --verbose
   build-node:
     # Build node project
     executor: node/default
