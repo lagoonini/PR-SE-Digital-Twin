@@ -16,7 +16,7 @@ jobs:
           command: npm test
 
   build-node:
-    # Build node project
+    # Build node projectt
     executor: node/default
     working_directory: ~/project/Digitial-Twin-Frontend
     steps:
