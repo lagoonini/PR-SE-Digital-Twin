@@ -1,34 +1,24 @@
 version: 2.1
 orbs:
   node: circleci/node@5
+
 jobs:
   test-node:
     executor: node/default
-    working_directory: ~/project/Digitial-Twin-Frontend
+    working_directory: ~/project/Digital-Twin-Frontend
     steps:
       - checkout:
           path: ~/project
       - node/install-packages:
           pkg-manager: npm
       - run:
-          name: Install Chrome
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y wget gnupg
-            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-      - run:
-          name: Setup CHROME_BIN
-          command: echo 'export CHROME_BIN="/usr/bin/google-chrome-stable"' >> $BASH_ENV
-      - run:
-          name: Run tests with verbose output
-          command: npm test --passWithNoTests --verbose
+          name: Run tests with Jest
+          command: npm test
+
   build-node:
     # Build node project
     executor: node/default
-    working_directory: ~/project/Digitial-Twin-Frontend
+    working_directory: ~/project/Digital-Twin-Frontend
     steps:
       - checkout:
           path: ~/project
@@ -45,6 +35,7 @@ jobs:
       - store_artifacts:
           path: ~/artifacts
           destination: node-build
+
   test-java:
     docker:
       - image: cimg/openjdk:17.0
@@ -67,6 +58,7 @@ jobs:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
           paths:
             - ~/.m2/repository
+
 workflows:
   build-and-test:
     jobs:
