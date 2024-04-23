@@ -9,7 +9,7 @@ const config: Config = {
         '@env': '<rootDir>/src/environments/environment'
     },
     transform: {
-        '^.+\\.(ts|html)$': ['ts-jest', {
+        '^.+\\.(ts|html)$': ['jest-preset-angular', {
             tsconfig: '<rootDir>/tsconfig.spec.json',
             stringifyContentPathRegex: '\\.html$',
             diagnostics: false
