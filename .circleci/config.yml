@@ -5,7 +5,7 @@ orbs:
 jobs:
   test-node:
     executor: node/default
-    working_directory: ~/project/Digital-Twin-Frontend
+    working_directory: ~/project/Digitial-Twin-Frontend
     steps:
       - checkout:
           path: ~/project
@@ -18,7 +18,7 @@ jobs:
   build-node:
     # Build node project
     executor: node/default
-    working_directory: ~/project/Digital-Twin-Frontend
+    working_directory: ~/project/Digitial-Twin-Frontend
     steps:
       - checkout:
           path: ~/project
